@@ -4,6 +4,18 @@ class BlocksController < ApplicationController
     @blocks = Block.all.reverse_order
   end
 
+  def start
+    @discipline = params[:discipline_id]
+    @block = Discipline.find(@discipline).blocks.
+      create(:start => DateTime.now)
+    render 'wait'
+  end
+
+  def finish
+    Block.find(params[:id]).update(:finish => DateTime.now)
+    redirect_to discipline_path(params[:discipline_id])
+  end
+
   def new
     @discipline_id = params[:discipline_id]
   end
@@ -15,16 +27,14 @@ class BlocksController < ApplicationController
   end
 
   def create
-    @discipline = Discipline.find(params[:discipline_id])
-    @block = @discipline.blocks.create(block_params)
-    @block.save
+    Discipline.find(params[:discipline_id]).blocks.create(block_params)
     redirect_to discipline_path(params[:discipline_id])
   end
 
   private
     
     def block_params
-      params.require(:block).permit(:discipline_id, :start, :finish)
+      params.require(:block).permit(:start, :finish)
     end
 
 end

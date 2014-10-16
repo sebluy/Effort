@@ -3,11 +3,12 @@
 </h1>
 
 <p>
-  <%= link_to 'New Block', new_discipline_block_path(@discipline) %>
+  <%= link_to 'Start New Block', start_discipline_block_path(@discipline), 
+    method: :post %>
 <p>
 
 <% @discipline.blocks.each do |block| %>
 
-  <%= render 'blocks/show', :block => block, :discipline => @discipline %>
+  <%= render 'blocks/show', :discipline => @discipline, :block => block %>
 
 <% end %>
