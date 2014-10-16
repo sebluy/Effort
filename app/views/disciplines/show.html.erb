@@ -8,9 +8,6 @@
 
 <% @discipline.blocks.each do |block| %>
 
-  <p>
-    <%= block.start %>
-    <%= block.finish %>
-  </p>
+  <%= render 'blocks/show', :block => block, :discipline => @discipline %>
 
 <% end %>
