@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :disciplines
   resources :blocks
-
-  root 'blocks#index'
+  root 'disciplines#index'
 
 end

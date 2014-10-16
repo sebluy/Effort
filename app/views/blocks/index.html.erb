@@ -7,7 +7,8 @@
   <p>
     <%= block.discipline %><br>
     <%= block.start %><br>
-    <%= block.finish %>
+    <%= block.finish %><br>
+    <%= link_to 'Destroy', block_path(block), method: :delete %>
   </p>
 
 <% end %>

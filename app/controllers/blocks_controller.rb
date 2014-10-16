@@ -6,6 +6,12 @@ class BlocksController < ApplicationController
 
   def new
   end
+  
+  def destroy
+    @block = Block.find(params[:id])
+    @block.destroy
+    redirect_to blocks_path
+  end
 
   def create
     @block = Block.new(block_params)
