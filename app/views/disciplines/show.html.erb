@@ -1,0 +1,16 @@
+<h1>
+  <%= @discipline.title %>
+</h1>
+
+<p>
+  <%= link_to 'New Block', new_discipline_block_path(@discipline) %>
+<p>
+
+<% @discipline.blocks.each do |block| %>
+
+  <p>
+    <%= block.start %>
+    <%= block.finish %>
+  </p>
+
+<% end %>

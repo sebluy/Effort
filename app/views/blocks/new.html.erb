@@ -1,11 +1,8 @@
 <h1>New Block</h1>
 
-<%= form_for :block, url: blocks_path do |f| %>
+<h2> <%= Discipline.find(@discipline_id).title %> </h2>
 
-  <p>
-    <%= f.label :discipline %><br>
-    <%= f.text_field :discipline %>
-  </p>
+<%= form_for :block, url: discipline_blocks_path(@discipline_id) do |f| %>
 
   <p>
     <%= f.label :start %><br>
