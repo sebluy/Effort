@@ -1,3 +1,13 @@
 <h1>Effort Blocks</h1>
 
-<p>Nothing is here</p>
+<%= link_to 'New Block', new_block_path %>
+
+<% @blocks.each do |block| %>
+
+  <p>
+    <%= block.discipline %><br>
+    <%= block.start %><br>
+    <%= block.finish %>
+  </p>
+
+<% end %>

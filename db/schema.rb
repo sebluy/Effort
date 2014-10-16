@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014000258) do
+ActiveRecord::Schema.define(version: 20141016135149) do
 
-  create_table "efforts", force: true do |t|
+  create_table "blocks", force: true do |t|
     t.string   "discipline"
-    t.text     "start"
-    t.text     "finish"
+    t.datetime "start"
+    t.datetime "finish"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

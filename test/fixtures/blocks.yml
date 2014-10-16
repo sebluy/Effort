@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  discipline: MyString
+  start: 2014-10-16 09:51:49
+  finish: 2014-10-16 09:51:49
+
+two:
+  discipline: MyString
+  start: 2014-10-16 09:51:49
+  finish: 2014-10-16 09:51:49
