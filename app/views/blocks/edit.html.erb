@@ -1,8 +1,9 @@
-<h1>New Block</h1>
+<h1>Edit Block</h1>
 
 <h2> <%= Discipline.find(@discipline_id).title %> </h2>
 
-<%= form_for :block, url: discipline_blocks_path(@discipline_id) do |f| %>
+<%= form_for :block,
+  url: discipline_block_path(@discipline_id, @id), method: :patch do |f| %>
 
   <p>
     <%= f.label :start %><br>

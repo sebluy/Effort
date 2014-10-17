@@ -16,8 +16,16 @@ class BlocksController < ApplicationController
     redirect_to discipline_path(params[:discipline_id])
   end
 
-  def new
+  def edit
     @discipline_id = params[:discipline_id]
+    @id = params[:id]
+    @block = Block.find(@id)
+  end
+
+  def update
+    @block = Block.find(params[:id])
+    @block.update(block_params)
+    redirect_to discipline_path(params[:discipline_id]) 
   end
   
   def destroy
