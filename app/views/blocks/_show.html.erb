@@ -1,12 +1,24 @@
-<p>
-  <%= block.start %><br>
-  <%= block.finish %><br>
+<li>
+
+  <p>
+    Time Spent: 
+    <% if block.finish.nil? %>
+      <%= (Time.zone.now - block.start).to_i %>
+    <% else %>
+      <%= (block.finish - block.start).to_i %>
+    <% end %>
+    seconds
+  </p>
+  
   <%= link_to 'Destroy', discipline_block_path(discipline, block),
     method: :delete %>
+
   <%= link_to 'Edit', edit_discipline_block_path(discipline, block) %>
+
   <% if block.finish.nil? %>
     <%= link_to 'Finish', finish_discipline_block_path(discipline, block),
       method: :post %>
   <% end %>
-</p>
+
+</li>
 

@@ -8,7 +8,7 @@ class BlocksController < ApplicationController
     @discipline = params[:discipline_id]
     @block = Discipline.find(@discipline).blocks.
       create(:start => DateTime.now)
-    render 'wait'
+    redirect_to discipline_path(params[:discipline_id])
   end
 
   def finish

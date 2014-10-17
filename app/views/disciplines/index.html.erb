@@ -2,10 +2,24 @@
 
 <%= link_to 'New Discipline', new_discipline_path %>
 
-<% @disciplines.each do |discipline| %>
+<ul>
+  <% @disciplines.each do |discipline| %>
 
-  <p> 
-    <%= link_to discipline.title, discipline_path(discipline) %>
-  </p>
+    <li> 
+      <p> 
+        Total Time Spent:
+        <%= discipline.blocks.inject(0) do |sum, block|
+          if block.finish.nil?
+            sum + (Time.zone.now - block.start)
+          else
+            sum + (block.finish - block.start)
+          end.to_i
+        end %>
+        seconds
+      </p>
+        
+      <%= link_to discipline.title, discipline_path(discipline) %>
+    </li>
 
-<% end %>
+  <% end %>
+</ul>
