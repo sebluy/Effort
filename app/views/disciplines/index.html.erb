@@ -8,13 +8,7 @@
     <li> 
       <p> 
         Total Time Spent:
-        <%= discipline.blocks.inject(0) do |sum, block|
-          if block.finish.nil?
-            sum + (Time.zone.now - block.start)
-          else
-            sum + (block.finish - block.start)
-          end.to_i
-        end %>
+        <%= discipline.total_time_spent.to_i %>
         seconds
       </p>
         

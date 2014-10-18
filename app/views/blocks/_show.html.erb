@@ -2,11 +2,7 @@
 
   <p>
     Time Spent: 
-    <% if block.finish.nil? %>
-      <%= (Time.zone.now - block.start).to_i %>
-    <% else %>
-      <%= (block.finish - block.start).to_i %>
-    <% end %>
+    <%= block.time_spent.to_i %>
     seconds
   </p>
   
