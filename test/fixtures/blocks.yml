@@ -1,18 +1,2 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  discipline: coding
-  start: 2014-10-16 09:52:00
-  finish: 2014-10-16 09:53:00
-
-two:
-  discipline: coding
-  start: 2014-10-16 09:51:00
-  finish: 2014-10-16 09:52:00
-
-<% current = Time.now %>
-
-today:
-  discipline: coding
-  start: <%= current %>
-  finish: <%= current + 30.seconds %>

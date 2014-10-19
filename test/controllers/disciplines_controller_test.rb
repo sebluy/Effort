@@ -9,7 +9,7 @@ class DisciplinesControllerTest < ActionController::TestCase
   end
 
   test 'should show a discipline' do
-    id = disciplines(:coding).id
+    id = Discipline.create.id
     get :show, {'id' => id}
     assert_response :success
     assert_equal id, assigns(:discipline).id

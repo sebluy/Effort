@@ -7,14 +7,12 @@ class BlocksController < ApplicationController
   end
 
   def finish
-    Block.find(params[:id]).update(:finish => Time.now)
+    Block.find(params[:id]).finish_new
     redirect_to discipline_path(params[:discipline_id])
   end
 
   def edit
-    @discipline_id = params[:discipline_id]
-    @id = params[:id]
-    @block = Block.find(@id)
+    @block = Block.find(params[:id])
   end
 
   def update
@@ -26,11 +24,6 @@ class BlocksController < ApplicationController
   def destroy
     @block = Block.find(params[:id])
     @block.destroy
-    redirect_to discipline_path(params[:discipline_id])
-  end
-
-  def create
-    Discipline.find(params[:discipline_id]).blocks.create(block_params)
     redirect_to discipline_path(params[:discipline_id])
   end
 
