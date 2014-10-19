@@ -1,18 +1,13 @@
 class BlocksController < ApplicationController
   
-  def index
-    @blocks = Block.all.reverse_order
-  end
-
   def start
-    @discipline = params[:discipline_id]
-    @block = Discipline.find(@discipline).blocks.
-      create(:start => DateTime.now)
-    redirect_to discipline_path(params[:discipline_id])
+    discipline = params[:discipline_id]
+    Discipline.find(discipline).start_new_block
+    redirect_to discipline_path(discipline)
   end
 
   def finish
-    Block.find(params[:id]).update(:finish => DateTime.now)
+    Block.find(params[:id]).update(:finish => Time.now)
     redirect_to discipline_path(params[:discipline_id])
   end
 
