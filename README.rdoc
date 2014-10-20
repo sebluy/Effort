@@ -5,4 +5,6 @@ Establish test coverage and then TDD
 Make disciplines into heirarchical structure with parents and children
 
 Make a nice table to display times at varios intervals
+  - Read up on ActiveSupport::Duration
+  - Read up on time_diff
 
