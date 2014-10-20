@@ -1,3 +1,5 @@
+require 'duration_string'
+
 class Discipline < ActiveRecord::Base
 
   has_many :blocks
@@ -14,6 +16,14 @@ class Discipline < ActiveRecord::Base
     todays_blocks.inject(0) do |sum, block|
       sum + block.time_spent
     end
+  end
+  
+  def time_spent_all_string
+    DurationString.convert(time_spent_all)
+  end
+
+  def time_spent_today_string
+    Duration.convert(time_spent_today)
   end
 
   private

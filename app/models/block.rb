@@ -1,3 +1,5 @@
+require 'duration_string'
+
 class Block < ActiveRecord::Base
 
   belongs_to :discipline
@@ -8,6 +10,10 @@ class Block < ActiveRecord::Base
     else
       finish - start
     end
+  end
+
+  def time_spent_string
+    DurationString.convert(time_spent)
   end
 
   def finish_new
