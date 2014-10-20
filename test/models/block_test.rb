@@ -37,4 +37,18 @@ class BlockTest < ActiveSupport::TestCase
 
   end
 
+  test 'should calculate time spent' do
+
+    block = Block.create
+
+    block.start = Time.now - 30.second
+  
+    assert_in_delta 30.seconds, block.time_spent, 1.second
+
+    block.finish = Time.now
+  
+    assert_in_delta 30.seconds, block.time_spent, 1.second
+
+  end
+
 end

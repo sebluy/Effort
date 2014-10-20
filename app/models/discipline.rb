@@ -16,14 +16,14 @@ class Discipline < ActiveRecord::Base
     end
   end
 
-  def todays_blocks
-    blocks.where(start: today_range)
-  end
-
   private
 
+    def todays_blocks
+      blocks.where(start: today_range)
+    end
+
     def today_range
-      (Time.now.midnight)..(Time.now.midnight + 1.day)
+      (Time.now.beginning_of_day)..(Time.now.end_of_day)
     end
   
 end
