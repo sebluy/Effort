@@ -1,3 +1,23 @@
 // Place all the styles related to the disciplines controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table {
+  width: 100% ;
+}
+
+table, th, td {
+    border: 1px solid black ;
+    border-color: teal ;
+}
+
+th, td {
+  width: 10% ;
+  height: 50px ;
+  text-align: center ;
+}
+
+* {
+  font-family: sans-serif ;
+}
+

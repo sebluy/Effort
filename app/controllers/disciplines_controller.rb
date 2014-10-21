@@ -2,6 +2,9 @@ class DisciplinesController < ApplicationController
 
   def index
     @disciplines = Discipline.all
+    @disciplines.to_a.sort_by! do |discipline|
+      discipline.time_spent(:week, false)
+    end.reverse!
   end
 
   def show

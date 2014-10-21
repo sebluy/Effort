@@ -4,7 +4,17 @@
     Time Spent: 
     <%= block.time_spent_string %>
   </p>
-  
+
+  </p>
+    Date:
+    <%= block.start.to_date.inspect %>
+  </p>
+
+  </p>
+    Start Time:
+    <%= block.start.to_s(:time) %>
+  </p>
+
   <%= link_to 'Destroy', discipline_block_path(discipline, block),
     method: :delete %>
 
