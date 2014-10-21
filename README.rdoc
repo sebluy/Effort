@@ -8,3 +8,5 @@ Make a nice table to display times at varios intervals
   - Read up on ActiveSupport::Duration
   - Read up on time_diff
 
+On new branch
+ - remove disciplines model and refactor to only use blocks

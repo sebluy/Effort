@@ -21,7 +21,7 @@ class DisciplineTest < ActiveSupport::TestCase
   
     5.times { discipline.blocks.create }
 
-    offset = [ 10.seconds, 1.day, 3.days, 3.weeks, 3.months ] 
+    offset = [ 10.seconds, 3.days, 3.weeks, 3.months, 2.years ] 
 
     discipline.blocks.each_with_index do |block, i|
       block.finish = Time.now - offset[i]
@@ -29,8 +29,12 @@ class DisciplineTest < ActiveSupport::TestCase
       block.save
     end
 
-    assert_equal 5.seconds, discipline.time_spent_all
-    assert_equal 1.seconds, discipline.time_spent_today
+    assert_equal 5.seconds, discipline.time_spent(:all, false)
+    assert_equal 1.second, discipline.time_spent(:today, false)
+    assert_equal 0.seconds, discipline.time_spent(:yesterday, false)
+    assert_equal 2.seconds, discipline.time_spent(:week, false)
+    assert_equal 3.seconds, discipline.time_spent(:month, false)
+    assert_equal 4.seconds, discipline.time_spent(:year, false)
 
   end
     
