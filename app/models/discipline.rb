@@ -39,7 +39,7 @@ class Discipline < ActiveRecord::Base
     }
 
     def range(period)
-      today = Date.today
+      today = Time.zone.today
       start = today - RANGE_OFFSETS[period][:start]
       finish = today - RANGE_OFFSETS[period][:finish]
       (start.beginning_of_day)..(finish.end_of_day)

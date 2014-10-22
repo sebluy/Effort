@@ -6,7 +6,7 @@ class Block < ActiveRecord::Base
 
   def time_spent
     if finish.nil?
-      Time.now - start
+      Time.zone.now - start
     else
       finish - start
     end
@@ -17,11 +17,11 @@ class Block < ActiveRecord::Base
   end
 
   def finish_new
-    update(finish: Time.now)
+    update(finish: Time.zone.now)
   end
 
   def self.start_new
-    self.create(start: Time.now)
+    self.create(start: Time.zone.now)
   end
 
 end
