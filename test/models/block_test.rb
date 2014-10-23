@@ -51,4 +51,15 @@ class BlockTest < ActiveSupport::TestCase
 
   end
 
+  test 'should create correct time spent string' do
+    
+    block = Block.create(
+      start: Time.new(2014, 1, 1),
+      finish: Time.new(2014, 1, 2)
+    )
+
+    assert_equal "1 day", block.time_spent_string
+
+  end
+     
 end
