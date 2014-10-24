@@ -12,9 +12,15 @@ table, th, td {
 }
 
 th, td {
+  background-color: purple ;
+  color: white ;
   width: 10% ;
   height: 50px ;
   text-align: center ;
+}
+
+table a {
+  color: gold ;
 }
 
 * {
