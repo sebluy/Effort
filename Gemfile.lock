@@ -41,6 +41,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    colorize (0.7.3)
     columnize (0.8.9)
     debugger-linecache (1.2.0)
     docile (1.1.5)
@@ -66,6 +67,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-bloodline (0.0.2)
+      colorize (~> 0.7)
+      pry (~> 0.10)
     pry-byebug (2.0.0)
       byebug (~> 3.4)
       pry (~> 0.10)
@@ -143,6 +147,7 @@ DEPENDENCIES
   jquery-rails
   pg
   pry
+  pry-bloodline
   pry-byebug
   pry-rails
   rails (= 4.1.6)

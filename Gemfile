@@ -9,6 +9,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry'
   gem 'pry-byebug'
+  gem 'pry-bloodline'
 end
 
 group :test do
