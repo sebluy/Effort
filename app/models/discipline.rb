@@ -1,6 +1,8 @@
 require 'duration_string'
 
 class Discipline < ActiveRecord::Base
+  
+  RANGES = [:today, :yesterday, :week, :month, :year, :all]
 
   has_many :blocks
 
@@ -13,7 +15,18 @@ class Discipline < ActiveRecord::Base
       sum + block.time_spent
     end 
     if as_string
-      string(time)
+      Discipline.string(time)
+    else
+      time
+    end
+  end
+  
+  def self.time_spent(period=:all, as_string=true)
+    time = self.all.inject(0) do |sum, discipline|
+      sum + discipline.time_spent(period, false)
+    end
+    if as_string
+      self.string(time)
     else
       time
     end
@@ -21,7 +34,7 @@ class Discipline < ActiveRecord::Base
 
   private
 
-    def string(time)
+    def self.string(time)
       DurationString.convert(time)
     end
 

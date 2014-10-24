@@ -18,6 +18,10 @@ class DisciplineTest < ActiveSupport::TestCase
   test 'should calculate time spent' do
 
     discipline = Discipline.create
+    other_discipline = Discipline.create.blocks.create(
+      start: Time.zone.today + 10.seconds,
+      finish: Time.zone.today + 11.seconds
+    )
   
     5.times { discipline.blocks.create }
 
@@ -36,7 +40,13 @@ class DisciplineTest < ActiveSupport::TestCase
     assert_equal 3.seconds, discipline.time_spent(:month, false)
     assert_equal 4.seconds, discipline.time_spent(:year, false)
 
+    assert_equal 6.seconds, Discipline.time_spent(:all, false)
+    assert_equal 2.second, Discipline.time_spent(:today, false)
+    assert_equal 0.seconds, Discipline.time_spent(:yesterday, false)
+    assert_equal 3.seconds, Discipline.time_spent(:week, false)
+    assert_equal 4.seconds, Discipline.time_spent(:month, false)
+    assert_equal 5.seconds, Discipline.time_spent(:year, false)
+
   end
-    
 
 end

@@ -18,30 +18,30 @@
 
   <tbody>
     <% @disciplines.each do |discipline| %>
-      <tr> 
+      <tr>
         <td scope="row">
           <%= link_to discipline.title, discipline_path(discipline) %>
         </td>
-        <td> 
-          <%= discipline.time_spent(:today, true) %>
-        </td>
-        <td> 
-          <%= discipline.time_spent(:yesterday, true) %>
-        </td>
-        <td> 
-          <%= discipline.time_spent(:week, true) %>
-        </td>
-        <td> 
-          <%= discipline.time_spent(:month, true) %>
-        </td>
-        <td> 
-          <%= discipline.time_spent(:year, true) %>
-        </td>
-        <td> 
-          <%= discipline.time_spent(:all, true) %>
-        </td>
+        <% Discipline::RANGES.each do |range| %>
+          <td>
+            <%= discipline.time_spent(range) %>
+          </td>
+        <% end %>
       </tr>
+
     <% end %>
+
+    <tr>
+      <td scope="row">
+        All
+      </td>
+      <% Discipline::RANGES.each do |range| %>
+        <td>
+          <%= Discipline.time_spent(range) %>
+        </td>
+      <% end %>
+    </tr>
+
   </tbody>
 
 </table>
