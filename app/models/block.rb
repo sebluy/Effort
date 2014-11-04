@@ -24,4 +24,8 @@ class Block < ActiveRecord::Base
     self.create(start: Time.zone.now)
   end
 
+  def self.pending
+    self.where(finish: nil)
+  end
+
 end
