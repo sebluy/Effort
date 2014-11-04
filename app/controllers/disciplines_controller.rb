@@ -10,6 +10,12 @@ class DisciplinesController < ApplicationController
   def show
     @discipline = Discipline.find(params[:id])
   end
+    
+  def destroy
+    @discipline = Discipline.find(params[:id])
+    @discipline.destroy
+    redirect_to disciplines_path
+  end
 
   def new
   end

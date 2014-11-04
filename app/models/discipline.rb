@@ -4,7 +4,7 @@ class Discipline < ActiveRecord::Base
   
   RANGES = [:today, :yesterday, :week, :month, :year, :all]
 
-  has_many :blocks
+  has_many :blocks, dependent: :destroy
 
   def start_new_block
     blocks.start_new
