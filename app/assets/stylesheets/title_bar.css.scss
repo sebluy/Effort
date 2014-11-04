@@ -1,0 +1,15 @@
+div#title_bar {
+  width: 100% ;
+  height: 100px ;
+  background-color: black ;
+  position: relative ;
+}
+
+div#title_bar h1 {
+  position: absolute ;
+  top: 50% ;
+  transform: translate(0, -100%) ;
+  padding-left: 30px ;
+  color: white ;
+}
+

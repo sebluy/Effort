@@ -10,3 +10,7 @@ Make a nice table to display times at varios intervals
 
 On new branch
  - remove disciplines model and refactor to only use blocks
+
+Todo list and Pomodoro stuff
+
+Time counter on tab header thing
