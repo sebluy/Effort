@@ -17,19 +17,8 @@
   </thead>
 
   <tbody>
-    <% @disciplines.each do |discipline| %>
-      <tr>
-        <td scope="row">
-          <%= link_to discipline.title, discipline_path(discipline) %>
-        </td>
-        <% Discipline::RANGES.each do |range| %>
-          <td>
-            <%= discipline.time_spent(range) %>
-          </td>
-        <% end %>
-      </tr>
 
-    <% end %>
+    <%= render @disciplines %>
 
     <tr>
       <td scope="row">
