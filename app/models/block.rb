@@ -5,7 +5,9 @@ class Block < ActiveRecord::Base
   belongs_to :discipline
 
   def time_spent
-    if finish.nil?
+    if finish.nil? && start.nil?
+      0
+    elsif finish.nil?
       Time.zone.now - start
     else
       finish - start
