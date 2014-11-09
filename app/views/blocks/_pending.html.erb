@@ -1,0 +1,16 @@
+<div id="pending">
+  <% pending = Block.pending %>
+  <% if !pending.empty? %>
+    <h2>Pending</h2>
+  <% end %>
+  <p>
+    <% Block.pending.each do |block| %>
+      <%= block.discipline.title %></br>
+      <%= block.time_spent_string %></br>
+      <%= link_to 'Finish',
+        finish_discipline_block_path(block.discipline_id, block.id),
+        method: :post
+      %>
+    <% end %>
+  </p>
+</div>
