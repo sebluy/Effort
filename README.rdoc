@@ -14,3 +14,5 @@ On new branch
 Todo list and Pomodoro stuff
 
 Time counter on tab header thing
+
+Extract a class for TimeRange and TimeDuration

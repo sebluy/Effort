@@ -4,7 +4,7 @@
     <p>
       <% Block.pending.each do |block| %>
         <b><%= block.discipline.title %></b></br>
-        <%= block.time_spent_string %></br>
+        <span id="time"><%= block.time_spent_string %></span></br>
         <%= link_to 'Finish',
           finish_discipline_block_path(block.discipline_id, block.id),
           method: :post
