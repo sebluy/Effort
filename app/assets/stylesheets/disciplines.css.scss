@@ -3,24 +3,25 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 table {
+  border: 1px solid black ;
+  border-color: teal ;
   width: 100% ;
-}
 
-table, th, td {
-    border: 1px solid black ;
-    border-color: teal ;
-}
+  th, td {
+    background-color: purple ;
+    color: white ;
+    width: 10% ;
+    height: 50px ;
+    text-align: center ;
+  }
 
-th, td {
-  background-color: purple ;
-  color: white ;
-  width: 10% ;
-  height: 50px ;
-  text-align: center ;
-}
+  td span {
+    padding: 10px ;
+  }
 
-table a {
-  color: gold ;
+  a {
+    color: gold ;
+  }
 }
 
 * {

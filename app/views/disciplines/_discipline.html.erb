@@ -1,6 +1,13 @@
 <tr>
   <td scope="row">
-    <%= link_to discipline.title, discipline_path(discipline) %>
+    <span>
+      <%= link_to discipline.title, discipline_path(discipline) %>
+    </span>
+    <span>
+      <%= link_to 'Start', start_discipline_block_path(discipline),
+        method: :post
+      %>
+    </span>
   </td>
   <% Discipline::RANGES.each do |range| %>
     <td>
