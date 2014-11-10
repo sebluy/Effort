@@ -9,7 +9,6 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     post_via_redirect '/disciplines', discipline: { title: 'test' }
     assert_equal '/disciplines', path
     assert_select 'table', 1
-    assert_select 'td', 'test'
 
     id = Discipline.first.id
     get "/disciplines/#{id}"
