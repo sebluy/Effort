@@ -16,3 +16,6 @@ Todo list and Pomodoro stuff
 Time counter on tab header thing
 
 Extract a class for TimeRange and TimeDuration
+
+Make table elements highlightable and switch header time to match
+that element.
