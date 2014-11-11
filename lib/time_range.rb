@@ -1,24 +1,26 @@
 class TimeRange
 
   def initialize(start, finish)
-    @finish = finish || Unfinished.new
-    @start = start || finish
+    @start, @finish = start, finish
+    @duration = duration
   end
 
   def length
-    @finish - @start
+    @duration.length
   end
 
   def to_s
-    Time.at(length).gmtime.strftime('%H:%M:%S')
+    @duration.to_s
   end
 
-  class Unfinished
-
-    def -(_)
-      0
+  def duration
+    if @start && @finish
+      TimeDuration.new(start - finish)
+    elsif @start
+      UnfinishedTimeDuration.new(start)
+    else
+      NullTimeDuration.new
     end
-  
   end
 
 end
