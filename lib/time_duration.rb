@@ -4,12 +4,12 @@ module TimeDuration
     if length < 1.day
       Time.at(length).gmtime.strftime('%H:%M:%S')
     else
-      '> 1 day'
+      '>= 1 day'
     end
   end
 
   def +(duration)
-    AggregateTimeDuration.new([self, duration])
+    AggregateTimeDuration.new(self, duration)
   end
 
 end
@@ -55,8 +55,8 @@ class AggregateTimeDuration
   
   include TimeDuration
   
-  def initialize(durations=[])
-    @durations = durations
+  def initialize(*durations)
+    @durations = *durations
   end
 
   def length
