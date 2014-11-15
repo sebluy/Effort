@@ -24,22 +24,12 @@ class TimeDurationTest < ActiveSupport::TestCase
 
   end
 
-  test 'skip' do
-    skip
+  test 'should add to another duration' do
 
-    finished = FinishedTimeDuration.new(30) 
-    added = finished + FinishedTimeDuration.new(20)
-    assert_equal 50, added.length
-    
-    start_time = Time.now - 5
-    added = finished + UnfinishedTimeDuration.new(start_time)
-    assert_in_delta 35, added.length, 0.01
-
-    added = finished + NullTimeDuration.new
-    assert_equal 30, added.length
-
-    added = finished + AggregateTimeDuration.new(finished)
-    assert_equal 60, added.length
+    @other_object = Object.new
+    @other_object.extend(TimeDuration)
+    @other_object.define_singleton_method(:length) { 10 }
+    assert_equal 15, (@other_object + @object).length
 
   end
 

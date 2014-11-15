@@ -5,14 +5,8 @@ class NullTimeDurationTest < ActiveSupport::TestCase
   
   test 'should have correct length' do
     
-    assert_equal 0, NullTimeDuration.new.length
+    assert_equal 0, TimeDuration::Null.new.length
   
-  end
-
-  test 'should print out correctly' do
-    
-    assert_equal '00:00:00', NullTimeDuration.new.to_s
-
   end
 
 end

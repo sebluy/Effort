@@ -3,6 +3,8 @@ require 'time_duration'
 
 class FinishedTimeDurationTest < ActiveSupport::TestCase
 
-  # do this pls
+  test 'should remember length' do
+    assert_equal 5, TimeDuration::Finished.new(5).length
+  end
 
 end
