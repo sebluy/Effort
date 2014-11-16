@@ -14,8 +14,6 @@ module TimeDuration
 
   class Finished
 
-    #include TimeDuration
-
     attr_reader :length
 
     def initialize(seconds)
@@ -26,8 +24,6 @@ module TimeDuration
 
   class Unfinished
 
-    #include TimeDuration
-    
     def initialize(start)
       @start = start
     end
@@ -40,8 +36,6 @@ module TimeDuration
 
   class Null
 
-    #include TimeDuration
-    
     def length
       0
     end
@@ -49,8 +43,6 @@ module TimeDuration
   end
 
   class Aggregate
-    
-  #  include TimeDuration
     
     def initialize(*durations)
       @durations = *durations

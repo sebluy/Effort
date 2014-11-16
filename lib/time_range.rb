@@ -15,11 +15,11 @@ class TimeRange
 
   def duration
     if @start && @finish
-      TimeDuration.new(start - finish)
+      TimeDuration::Finished.new(@finish - @start)
     elsif @start
-      UnfinishedTimeDuration.new(start)
+      TimeDuration::Unfinished.new(@start)
     else
-      NullTimeDuration.new
+      TimeDuration::Null.new
     end
   end
 
