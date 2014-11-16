@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'time_duration'
+#require 'time_duration'
 
 class TimeDurationTest < ActiveSupport::TestCase
 
@@ -31,6 +31,17 @@ class TimeDurationTest < ActiveSupport::TestCase
     @other_object.define_singleton_method(:length) { 10 }
     assert_equal 15, (@other_object + @object).length
 
+  end
+
+  test 'initializer should choose the correct class' do
+    
+    time = Time.now
+
+    assert TimeDuration.new(time, time + 5).is_a? TimeDuration::Finished
+    assert TimeDuration.new(time, nil).is_a? TimeDuration::Unfinished
+    assert TimeDuration.new(nil, time).is_a? TimeDuration::Null
+    assert TimeDuration.new(nil, nil).is_a? TimeDuration::Null
+  
   end
 
 end

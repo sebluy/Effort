@@ -1,5 +1,15 @@
 module TimeDuration
 
+  def self.new(start, finish)
+    if start && finish
+      TimeDuration::Finished.new(finish - start)
+    elsif start
+      TimeDuration::Unfinished.new(start)
+    else
+      TimeDuration::Null.new
+    end
+  end
+
   def to_s
     if length < 1.day
       Time.at(length).gmtime.strftime('%H:%M:%S')

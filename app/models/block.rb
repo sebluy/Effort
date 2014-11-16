@@ -1,4 +1,4 @@
-require 'duration_string'
+require 'time_range'
 
 class Block < ActiveRecord::Base
 
