@@ -2,19 +2,24 @@
    the javascripts */
 var timer ;
 var ready = function() {
-  var date = new Date(0) ;
   clearInterval(timer) ;
-  if ($('#pending span#time').html() != undefined) {
-    $('#pending span#time').html(date.toUTCString().substring(17, 25)) ;
-    $('head title').html(date.toUTCString().substring(17, 25)) ;
-    timer = setInterval(function() {myTimer(date)}, 1000) ;
+  var server_time = $('#pending span#time').html() ;
+  if (server_time != undefined) {
+    var time = new Date('T' + server_time + 'Z') ;
+    $('#pending span#time').html(display_string(time)) ;
+    $('head title').html(display_string(time)) ;
+    timer = setInterval(function() {myTimer(time)}, 1000) ;
   }
 } ;
 
-var myTimer = function(date) {
-  date.setSeconds(date.getSeconds() + 1) ;
-  $('#pending span#time').html(date.toUTCString().substring(17, 25)) ;
-  $('head title').html(date.toUTCString().substring(17, 25)) ;
+var display_string = function(time) {
+  return time.toUTCString().substring(17, 25) ;
+}
+
+var myTimer = function(time) {
+  time.setSeconds(time.getSeconds() + 1) ;
+  $('#pending span#time').html(display_string(time)) ;
+  $('head title').html(display_string(time)) ;
 } ;
 
 $(document).ready(ready) ;

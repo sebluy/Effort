@@ -2,17 +2,6 @@ require 'test_helper'
 
 class BlockTest < ActiveSupport::TestCase
 
-  test 'should calculate time spent correctly' do
-
-    start = Time.new(2014, 10, 14, 10, 10, 0)
-    finish = Time.new(2014, 10, 14, 10, 10, 1)
-    
-    block = Block.create(start: start, finish: finish)
-
-    assert_equal 1, block.time_spent
-
-  end
-
   test 'should start a new block' do
 
     block = nil
@@ -37,28 +26,15 @@ class BlockTest < ActiveSupport::TestCase
 
   end
 
-  test 'should calculate time spent' do
-
-    block = Block.create
-
-    block.start = Time.now - 30.second
-  
-    assert_in_delta 30.seconds, block.time_spent, 1.second
-
-    block.finish = Time.now
-  
-    assert_in_delta 30.seconds, block.time_spent, 1.second
-
-  end
-
-  test 'should create correct time spent string' do
+  test 'should provide a valid time duration' do
     
-    block = Block.create(
+    duration = Block.create(
       start: Time.new(2014, 1, 1),
-      finish: Time.new(2014, 1, 2)
-    )
+      finish: Time.new(2014, 1, 1, 23, 32, 1)
+    ).duration
 
-    assert_equal "1 day", block.time_spent_string
+    assert_equal "23:32:01", duration.to_s
+    assert_equal 23.hours + 32.minutes + 1.second, duration.length
 
   end
      

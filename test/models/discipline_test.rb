@@ -15,7 +15,7 @@ class DisciplineTest < ActiveSupport::TestCase
 
   end
 
-  test 'should calculate time spent' do
+  test 'should provide correct time_spent' do
 
     discipline = Discipline.create
     other_discipline = Discipline.create.blocks.create(
@@ -33,19 +33,19 @@ class DisciplineTest < ActiveSupport::TestCase
       block.save
     end
 
-    assert_equal 5.seconds, discipline.time_spent(:all, false)
-    assert_equal 1.second, discipline.time_spent(:today, false)
-    assert_equal 0.seconds, discipline.time_spent(:yesterday, false)
-    assert_equal 2.seconds, discipline.time_spent(:week, false)
-    assert_equal 3.seconds, discipline.time_spent(:month, false)
-    assert_equal 4.seconds, discipline.time_spent(:year, false)
+    assert_equal 5.seconds, discipline.time_spent.length
+    assert_equal 1.second , discipline.time_spent(:today).length
+    assert_equal 0.seconds, discipline.time_spent(:yesterday).length
+    assert_equal 2.seconds, discipline.time_spent(:week).length
+    assert_equal 3.seconds, discipline.time_spent(:month).length
+    assert_equal 4.seconds, discipline.time_spent(:year).length
 
-    assert_equal 6.seconds, Discipline.time_spent(:all, false)
-    assert_equal 2.second, Discipline.time_spent(:today, false)
-    assert_equal 0.seconds, Discipline.time_spent(:yesterday, false)
-    assert_equal 3.seconds, Discipline.time_spent(:week, false)
-    assert_equal 4.seconds, Discipline.time_spent(:month, false)
-    assert_equal 5.seconds, Discipline.time_spent(:year, false)
+    assert_equal 6.seconds, Discipline.time_spent.length
+    assert_equal 2.seconds, Discipline.time_spent(:today).length
+    assert_equal 0.seconds, Discipline.time_spent(:yesterday).length
+    assert_equal 3.seconds, Discipline.time_spent(:week).length
+    assert_equal 4.seconds, Discipline.time_spent(:month).length
+    assert_equal 5.seconds, Discipline.time_spent(:year).length
 
   end
 

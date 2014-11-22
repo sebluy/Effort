@@ -3,7 +3,7 @@ require 'test_helper'
 class DisciplinesControllerTest < ActionController::TestCase
 
   test 'should show the index' do
-      
+
     # offset by 3 days to help assert order is by week
     reference = Time.zone.today - 3.days
 
@@ -20,8 +20,8 @@ class DisciplinesControllerTest < ActionController::TestCase
     get :index
 
     disciplines = assigns(:disciplines)
-    weekly_time_first = disciplines[0].time_spent(:week, false)
-    weekly_time_second = disciplines[1].time_spent(:week, false)
+    weekly_time_first = disciplines[0].time_spent(:week).length
+    weekly_time_second = disciplines[1].time_spent(:week).length
 
     # should reorder to make the first block longer
     assert weekly_time_first >= weekly_time_second

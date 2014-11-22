@@ -1,4 +1,4 @@
-require 'duration_string'
+require 'time_duration'
 
 class Discipline < ActiveRecord::Base
   
@@ -10,25 +10,15 @@ class Discipline < ActiveRecord::Base
     blocks.start_new
   end
   
-  def time_spent(period=:all, as_string=true)
-    time = blocks_in_range(period).inject(0) do |sum, block| 
-      sum + block.time_spent
+  def time_spent(period=:all)
+    blocks_in_range(period).inject(TimeDuration::Null.new) do |sum, block| 
+      sum + block.duration
     end 
-    if as_string
-      Discipline.string(time)
-    else
-      time
-    end
   end
   
-  def self.time_spent(period=:all, as_string=true)
-    time = self.all.inject(0) do |sum, discipline|
-      sum + discipline.time_spent(period, false)
-    end
-    if as_string
-      self.string(time)
-    else
-      time
+  def self.time_spent(period=:all)
+    self.all.inject(TimeDuration::Null.new) do |sum, discipline|
+      sum + discipline.time_spent(period)
     end
   end
 
