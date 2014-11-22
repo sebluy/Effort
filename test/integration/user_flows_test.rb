@@ -3,7 +3,7 @@ require 'test_helper'
 class UserFlowsTest < ActionDispatch::IntegrationTest
   
   test 'create a discipline and some blocks' do
-    skip
+
     get '/'
     assert_response :success
 

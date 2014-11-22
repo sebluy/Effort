@@ -1,9 +1,8 @@
 class DisciplinesController < ApplicationController
 
   def index
-    @disciplines = Discipline.all
-    @disciplines.to_a.sort_by! do |discipline|
-      discipline.time_spent(:week, false)
+    @disciplines = Discipline.all.to_a.sort_by! do |discipline|
+      discipline.time_spent(:week)
     end.reverse!
   end
 

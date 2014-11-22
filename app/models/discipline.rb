@@ -10,15 +10,15 @@ class Discipline < ActiveRecord::Base
     blocks.start_new
   end
   
-  def duration(period=:all)
-    blocks_in_range(period).inject(0) do |sum, block| 
+  def time_spent(period=:all)
+    blocks_in_range(period).inject(TimeDuration::Null.new) do |sum, block| 
       sum + block.duration
     end 
   end
   
-  def self.duration(period=:all)
-    time = self.all.inject(0) do |sum, discipline|
-      sum + discipline.duration(period, false)
+  def self.time_spent(period=:all)
+    self.all.inject(TimeDuration::Null.new) do |sum, discipline|
+      sum + discipline.time_spent(period)
     end
   end
 

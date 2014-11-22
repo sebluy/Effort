@@ -27,8 +27,6 @@ class BlocksControllerTest < ActionController::TestCase
 
   test 'should edit a block' do
 
-    skip
-
     block = Discipline.create.blocks.create
   
     get :edit, id: block.id, discipline_id: block.discipline_id

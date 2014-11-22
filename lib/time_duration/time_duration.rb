@@ -1,5 +1,7 @@
 module TimeDuration
 
+  include Comparable
+
   def self.new(start, finish)
     if start && finish
       TimeDuration::Finished.new(finish - start)
@@ -14,7 +16,7 @@ module TimeDuration
     if length < 1.day
       Time.at(length).gmtime.strftime('%H:%M:%S')
     else
-      '>= 1 day'
+      sprintf('%.1f days', length.to_f/1.day)
     end
   end
 
@@ -22,7 +24,13 @@ module TimeDuration
     Aggregate.new(self, duration)
   end
 
+  def <=>(duration)
+    length <=> duration.length
+  end
+
   class Finished
+    
+    include TimeDuration
 
     attr_reader :length
 
@@ -33,6 +41,8 @@ module TimeDuration
   end
 
   class Unfinished
+
+    include TimeDuration
 
     def initialize(start)
       @start = start
@@ -46,6 +56,8 @@ module TimeDuration
 
   class Null
 
+    include TimeDuration
+
     def length
       0
     end
@@ -54,6 +66,8 @@ module TimeDuration
 
   class Aggregate
     
+    include TimeDuration
+
     def initialize(*durations)
       @durations = *durations
     end
