@@ -1,5 +1,3 @@
-require 'time_duration'
-
 class Discipline < ActiveRecord::Base
   
   RANGES = [:today, :yesterday, :week, :month, :year, :all]
@@ -23,10 +21,6 @@ class Discipline < ActiveRecord::Base
   end
 
   private
-
-    def self.string(time)
-      DurationString.convert(time)
-    end
 
     def blocks_in_range(period)
       return blocks if period == :all

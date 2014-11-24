@@ -14,11 +14,11 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     id = Discipline.first.id
     get "/disciplines/#{id}"
     post_via_redirect "/disciplines/#{id}/blocks/start"
-    assert_equal "/disciplines/#{id}", path
+    assert_equal "/disciplines", path
 
     block_id = Block.first.id
     post_via_redirect "/disciplines/#{id}/blocks/#{block_id}/finish"
-    assert_equal "/disciplines/#{id}", path
+    assert_equal "/disciplines", path
 
   end
 

@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'time_duration'
 
 class NullTimeDurationTest < ActiveSupport::TestCase
   

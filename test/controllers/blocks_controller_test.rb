@@ -10,7 +10,7 @@ class BlocksControllerTest < ActionController::TestCase
       post :start, discipline_id: discipline
     end
   
-    assert_redirected_to discipline_path(discipline)
+    assert_redirected_to disciplines_path
 
   end
 
@@ -21,7 +21,7 @@ class BlocksControllerTest < ActionController::TestCase
     post :finish, id: block.id, discipline_id: block.discipline_id
   
     assert_not_nil block.reload.finish
-    assert_redirected_to discipline_path(block.discipline_id)
+    assert_redirected_to disciplines_path
     
   end
 

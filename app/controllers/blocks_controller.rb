@@ -3,12 +3,12 @@ class BlocksController < ApplicationController
   def start
     discipline = params[:discipline_id]
     Discipline.find(discipline).start_new_block
-    redirect_to discipline_path(discipline)
+    redirect_to disciplines_path
   end
 
   def finish
     Block.find(params[:id]).finish_new
-    redirect_to discipline_path(params[:discipline_id])
+    redirect_to disciplines_path
   end
 
   def edit

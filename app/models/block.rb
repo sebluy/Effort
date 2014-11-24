@@ -1,5 +1,3 @@
-require 'time_range'
-
 class Block < ActiveRecord::Base
 
   belongs_to :discipline

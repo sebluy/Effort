@@ -45,4 +45,16 @@ class DisciplinesControllerTest < ActionController::TestCase
 
   end
 
+  test 'should destroy a discipline' do 
+    
+    discipline = Discipline.create
+
+    assert_difference('Discipline.count', -1) do
+      delete :destroy, id: discipline.id
+    end
+
+    assert_redirected_to disciplines_path
+
+  end
+
 end
