@@ -18,14 +18,10 @@ class DisciplineTest < ActiveSupport::TestCase
   test 'should provide correct time_spent' do
 
     discipline = Discipline.create
-    other_discipline = Discipline.create.blocks.create(
-      start: Time.zone.today + 10.seconds,
-      finish: Time.zone.today + 11.seconds
-    )
-  
-    5.times { discipline.blocks.create }
 
-    offset = [ 10.seconds, 3.days, 3.weeks, 3.months, 2.years ] 
+    2.times { discipline.blocks.create }
+
+    offset = [ 10.seconds, 3.days ]
 
     discipline.blocks.each_with_index do |block, i|
       block.finish = Time.now - offset[i]
@@ -33,19 +29,13 @@ class DisciplineTest < ActiveSupport::TestCase
       block.save
     end
 
-    assert_equal 5.seconds, discipline.time_spent.length
     assert_equal 1.second , discipline.time_spent(:today).length
     assert_equal 0.seconds, discipline.time_spent(:yesterday).length
     assert_equal 2.seconds, discipline.time_spent(:week).length
-    assert_equal 3.seconds, discipline.time_spent(:month).length
-    assert_equal 4.seconds, discipline.time_spent(:year).length
 
-    assert_equal 6.seconds, Discipline.time_spent.length
-    assert_equal 2.seconds, Discipline.time_spent(:today).length
+    assert_equal 1.seconds, Discipline.time_spent(:today).length
     assert_equal 0.seconds, Discipline.time_spent(:yesterday).length
-    assert_equal 3.seconds, Discipline.time_spent(:week).length
-    assert_equal 4.seconds, Discipline.time_spent(:month).length
-    assert_equal 5.seconds, Discipline.time_spent(:year).length
+    assert_equal 2.seconds, Discipline.time_spent(:week).length
 
   end
 

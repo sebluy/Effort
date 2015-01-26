@@ -14,11 +14,11 @@
 ActiveRecord::Schema.define(version: 20141016213545) do
 
   create_table "blocks", force: true do |t|
-    t.datetime "start"
-    t.datetime "finish"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "discipline_id"
+    t.datetime "start"
+    t.datetime "finish"
   end
 
   create_table "disciplines", force: true do |t|

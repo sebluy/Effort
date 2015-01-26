@@ -1,6 +1,12 @@
 class Discipline < ActiveRecord::Base
-  
-  RANGES = [:today, :yesterday, :week, :month, :year, :all]
+
+  RANGE_OFFSETS = {
+    today: { start: 0, finish: 0},
+    yesterday: { start: 1.day, finish: 1.day},
+    week: { start: 1.week, finish: 0}
+  }
+
+  RANGES = RANGE_OFFSETS.keys
 
   has_many :blocks, dependent: :destroy
 
@@ -8,13 +14,13 @@ class Discipline < ActiveRecord::Base
     blocks.start_new
   end
   
-  def time_spent(period=:all)
+  def time_spent(period)
     blocks_in_range(period).inject(TimeDuration::Null.new) do |sum, block| 
       sum + block.duration
     end 
   end
   
-  def self.time_spent(period=:all)
+  def self.time_spent(period)
     self.all.inject(TimeDuration::Null.new) do |sum, discipline|
       sum + discipline.time_spent(period)
     end
@@ -26,14 +32,6 @@ class Discipline < ActiveRecord::Base
       return blocks if period == :all
       blocks.where(start: range(period))
     end
-
-    RANGE_OFFSETS = { 
-      today: { start: 0, finish: 0},
-      yesterday: { start: 1.day, finish: 1.day},
-      week: { start: 1.week, finish: 0},
-      month: { start: 1.month, finish: 0},
-      year: { start: 1.year, finish: 0}
-    }
 
     def range(period)
       today = Time.zone.today
