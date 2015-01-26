@@ -1,22 +1,12 @@
 TODO:
 
-Establish test coverage and then TDD
-
 Make disciplines into heirarchical structure with parents and children
  - Or make each block contain metadata and organize blocks by metadata
-
-Make a nice table to display times at varios intervals
-  - Read up on ActiveSupport::Duration
-  - Read up on time_diff
 
 On new branch
  - remove disciplines model and refactor to only use blocks
 
 Todo list and Pomodoro stuff
-
-Time counter on tab header thing
-
-Extract a class for TimeRange and TimeDuration
 
 Make table elements highlightable and switch header time to match
 that element.
