@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     as: 'start_discipline_block'
   post '/disciplines/:discipline_id/blocks/:id/finish', to: 'blocks#finish',
     as: 'finish_discipline_block'
+  post '/disciplines/clean', to: 'disciplines#clean',
+    as: 'clean'
 
   root 'disciplines#index'
 

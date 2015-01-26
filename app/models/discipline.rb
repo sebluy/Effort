@@ -3,7 +3,8 @@ class Discipline < ActiveRecord::Base
   RANGE_OFFSETS = {
     today: { start: 0, finish: 0},
     yesterday: { start: 1.day, finish: 1.day},
-    week: { start: 1.week, finish: 0}
+    week: { start: 1.week, finish: 0 },
+    old: { start: 1.year, finish: 1.week }
   }
 
   RANGES = RANGE_OFFSETS.keys
@@ -13,9 +14,9 @@ class Discipline < ActiveRecord::Base
   def start_new_block
     blocks.start_new
   end
-  
+
   def time_spent(period)
-    blocks_in_range(period).inject(TimeDuration::Null.new) do |sum, block| 
+    blocks_in_range(period).inject(TimeDuration::Null.new) do |sum, block|
       sum + block.duration
     end 
   end
@@ -23,6 +24,18 @@ class Discipline < ActiveRecord::Base
   def self.time_spent(period)
     self.all.inject(TimeDuration::Null.new) do |sum, discipline|
       sum + discipline.time_spent(period)
+    end
+  end
+
+  def clean
+    blocks_in_range(:old).each do |block|
+      block.destroy
+    end
+  end
+
+  def self.clean
+    self.all.each do |discipline|
+      discipline.clean
     end
   end
 

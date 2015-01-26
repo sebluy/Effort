@@ -1,6 +1,12 @@
 <h1>Disciplines</h1>
 
-<%= link_to 'New Discipline', new_discipline_path %>
+<div>
+  <%= link_to 'New Discipline', new_discipline_path %>
+</div>
+
+<div>
+  <%= link_to 'Clean', clean_path, method: :post %>
+</div>
 
 <table>
 
@@ -10,6 +16,7 @@
       <th scope="col">Today</th>
       <th scope="col">Yesterday</th>
       <th scope="col">Weekly</th>
+      <th scope="col">Old</th>
     </tr>
   </thead>
 

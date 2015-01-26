@@ -6,6 +6,11 @@ class DisciplinesController < ApplicationController
     end.reverse!
   end
 
+  def clean
+    Discipline.clean
+    redirect_to disciplines_path
+  end
+
   def show
     @discipline = Discipline.find(params[:id])
   end
