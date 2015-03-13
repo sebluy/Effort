@@ -45,6 +45,6 @@
 
 </table>
 
-<%= render json: @time_table %>
+<%= hidden_field_tag 'plot_data', @time_table_lengths.to_json %>
 
 <div id="plot"></div>

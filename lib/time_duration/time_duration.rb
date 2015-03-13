@@ -20,6 +20,10 @@ module TimeDuration
     end
   end
 
+  def to_json
+    length
+  end
+
   def +(duration)
     Aggregate.new(self, duration)
   end
