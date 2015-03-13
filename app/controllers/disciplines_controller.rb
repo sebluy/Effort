@@ -1,9 +1,11 @@
 class DisciplinesController < ApplicationController
 
   def index
-    @disciplines = Discipline.all.to_a.sort_by! do |discipline|
-      discipline.time_spent(:week)
-    end.reverse!
+    @disciplines = Discipline.all
+    @time_table = {}
+    -6.upto(0) do |days_ago|
+      @time_table[days_ago] = Discipline.daily_time_spent(days_ago.days)
+    end
   end
 
   def clean

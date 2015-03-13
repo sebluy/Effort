@@ -9,9 +9,12 @@
       %>
     </span>
   </td>
-  <% Discipline::RANGES.each do |range| %>
+  <td>
+    <%= discipline.old %>
+  </td>
+  <% -6.upto(0) do |days_ago| %>
     <td>
-      <%= discipline.time_spent(range) %>
+      <%= discipline.daily_time_spent(days_ago.days) %>
     </td>
   <% end %>
 </tr>

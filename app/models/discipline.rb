@@ -1,35 +1,44 @@
 class Discipline < ActiveRecord::Base
 
-  RANGE_OFFSETS = {
-    today: { start: 0, finish: 0},
-    yesterday: { start: 1.day, finish: 1.day},
-    week: { start: 1.week, finish: 0 },
-    old: { start: 1.year, finish: 1.week }
-  }
-
-  RANGES = RANGE_OFFSETS.keys
-
   has_many :blocks, dependent: :destroy
 
   def start_new_block
     blocks.start_new
   end
 
-  def time_spent(period)
-    blocks_in_range(period).inject(TimeDuration::Null.new) do |sum, block|
-      sum + block.duration
-    end 
+  def daily_time_spent(days_ago)
+    day = Time.zone.today + days_ago
+    range = (day.beginning_of_day)..(day.end_of_day)
+    daily_blocks = blocks.where(start: range)
+    daily_blocks.inject(TimeDuration::Null.new) do |sum, block|
+      sum + block.duration 
+    end
   end
   
-  def self.time_spent(period)
+  def self.daily_time_spent(days_ago)
     self.all.inject(TimeDuration::Null.new) do |sum, discipline|
-      sum + discipline.time_spent(period)
+      sum + discipline.daily_time_spent(days_ago)
     end
   end
 
   def clean
-    blocks_in_range(:old).each do |block|
-      block.destroy
+    day = (Time.zone.today - 6.days).to_date
+    start_field = Block.arel_table[:start]
+    blocks.where(start_field.lt(day)).each(&:destroy)
+  end
+  
+  def old
+    day = (Time.zone.today - 6.days).to_date
+    start_field = Block.arel_table[:start]
+    blocks.where(start_field.lt(day)).
+        inject(TimeDuration::Null.new) do |sum, block|
+      sum + block.duration
+    end
+  end
+
+  def self.old
+    self.all.inject(TimeDuration::Null.new) do |sum, discipline|
+      sum + discipline.old
     end
   end
 
@@ -38,19 +47,5 @@ class Discipline < ActiveRecord::Base
       discipline.clean
     end
   end
-
-  private
-
-    def blocks_in_range(period)
-      return blocks if period == :all
-      blocks.where(start: range(period))
-    end
-
-    def range(period)
-      today = Time.zone.today
-      start = today - RANGE_OFFSETS[period][:start]
-      finish = today - RANGE_OFFSETS[period][:finish]
-      (start.beginning_of_day)..(finish.end_of_day)
-    end
 
 end

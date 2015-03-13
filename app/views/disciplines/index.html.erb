@@ -5,6 +5,7 @@
 </div>
 
 <div>
+  <p>Old: <%= Discipline.old %></p>
   <%= link_to 'Clean', clean_path, method: :post %>
 </div>
 
@@ -12,11 +13,13 @@
 
   <thead>
     <tr>
-      <th scope="col">Discipline</th>
-      <th scope="col">Today</th>
-      <th scope="col">Yesterday</th>
-      <th scope="col">Weekly</th>
-      <th scope="col">Old</th>
+      <th>Discipline</th>
+      <th>Old</th>
+      <% 6.downto(2) do |days_ago| %>
+        <th><%= days_ago.days.ago.strftime('%A') %></th>
+      <% end %>
+      <th>Yesterday</th>
+      <th>Today</th>
     </tr>
   </thead>
 
@@ -28,9 +31,12 @@
       <td scope="row">
         All
       </td>
-      <% Discipline::RANGES.each do |range| %>
+      <td>
+        <%= Discipline.old %>
+      </td>
+      <% -6.upto(0) do |days_ago| %>
         <td>
-          <%= Discipline.time_spent(range) %>
+          <%= @time_table[days_ago] %>
         </td>
       <% end %>
     </tr>
@@ -38,3 +44,7 @@
   </tbody>
 
 </table>
+
+<%= render json: @time_table %>
+
+<div id="plot"></div>

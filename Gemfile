@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.3'
-
-gem 'rails', '4.1.6'
+gem 'rails'
 
 group :development, :test do
   gem 'sqlite3'
@@ -21,11 +19,12 @@ group :production do
   gem 'rails_12factor'
 end
 
-gem 'sass-rails', '~> 4.0.3'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'flot-rails', :git => "https://github.com/Kjarrigan/flot-rails.git"
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'jbuilder'
+gem 'sdoc',          group: :doc
 gem 'spring',        group: :development
