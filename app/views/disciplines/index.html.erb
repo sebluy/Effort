@@ -15,8 +15,8 @@
     <tr>
       <th>Discipline</th>
       <th>Old</th>
-      <% 6.downto(2) do |days_ago| %>
-        <th><%= days_ago.days.ago.strftime('%A') %></th>
+      <% 6.downto(2) do |n| %>
+        <th><%= n.days.ago.strftime('%A') %></th>
       <% end %>
       <th>Yesterday</th>
       <th>Today</th>
@@ -34,9 +34,9 @@
       <td>
         <%= Discipline.old %>
       </td>
-      <% -6.upto(0) do |days_ago| %>
+      <% -6.upto(0) do |n| %>
         <td>
-          <%= @time_table[days_ago] %>
+          <%= @time_table[n] %>
         </td>
       <% end %>
     </tr>
@@ -45,6 +45,7 @@
 
 </table>
 
-<%= hidden_field_tag 'plot_data', @time_table_lengths.to_json %>
+<%= hidden_field_tag 'plot_data', @plot_data.to_json %>
 
-<div id="plot"></div>
+<div class="plot" id="daily_plot"></div>
+<div class="plot" id="weekly_total_plot"></div>

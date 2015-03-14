@@ -1,13 +1,17 @@
 class DisciplinesController < ApplicationController
 
   def index
+
     @disciplines = Discipline.all
     @time_table = {}
-    @time_table_lengths = {}
-    -6.upto(0) do |days_ago|
-      @time_table[days_ago] = Discipline.daily_time_spent(days_ago.days)
-      @time_table_lengths[days_ago] = @time_table[days_ago].length
+    @plot_data = []
+  
+    0.upto(13) do |n|
+      time = Discipline.daily_time_spent(n.days.ago)
+      @time_table[-n] = time
+      @plot_data.unshift([-n, time.length/3600.0])
     end
+
   end
 
   def clean

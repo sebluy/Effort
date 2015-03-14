@@ -12,9 +12,9 @@
   <td>
     <%= discipline.old %>
   </td>
-  <% -6.upto(0) do |days_ago| %>
+  <% 6.downto(0) do |n| %>
     <td>
-      <%= discipline.daily_time_spent(days_ago.days) %>
+      <%= discipline.daily_time_spent(n.days.ago) %>
     </td>
   <% end %>
 </tr>

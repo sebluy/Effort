@@ -6,23 +6,22 @@ class Discipline < ActiveRecord::Base
     blocks.start_new
   end
 
-  def daily_time_spent(days_ago)
-    day = Time.zone.today + days_ago
-    range = (day.beginning_of_day)..(day.end_of_day)
+  def daily_time_spent(date)
+    range = (date.beginning_of_day)..(date.end_of_day)
     daily_blocks = blocks.where(start: range)
     daily_blocks.inject(TimeDuration::Null.new) do |sum, block|
       sum + block.duration 
     end
   end
   
-  def self.daily_time_spent(days_ago)
+  def self.daily_time_spent(date)
     self.all.inject(TimeDuration::Null.new) do |sum, discipline|
-      sum + discipline.daily_time_spent(days_ago)
+      sum + discipline.daily_time_spent(date)
     end
   end
 
   def clean
-    day = (Time.zone.today - 6.days).to_date
+    day = 6.days.ago.to_date
     start_field = Block.arel_table[:start]
     blocks.where(start_field.lt(day)).each(&:destroy)
   end
