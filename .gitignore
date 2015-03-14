@@ -18,5 +18,5 @@
 # Ignore coverage
 /coverage/*
 
-# Ignore idea
-.idea/
+# Ignore Spring files
+/spring/*.pid

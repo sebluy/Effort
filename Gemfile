@@ -8,10 +8,14 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-bloodline'
+  gem 'spring'
 end
 
 group :test do
   gem 'simplecov', require: false
+  gem 'mini_backtrace'
+  gem 'minitest-reporters'
+  gem 'guard-minitest'
 end
 
 group :production do
@@ -27,4 +31,3 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
 gem 'sdoc',          group: :doc
-gem 'spring',        group: :development
