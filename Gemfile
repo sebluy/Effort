@@ -8,13 +8,11 @@ group :development do
 end
 
 group :development, :test do
-  gem 'sqlite3'
-  gem 'byebug'
-#  gem 'pry-rails'
-#  gem 'pry'
-#  gem 'pry-byebug'
-#  gem 'pry-bloodline'
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'spring'
+  gem 'sqlite3'
 end
 
 group :test do
