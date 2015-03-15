@@ -37,5 +37,24 @@ class BlockTest < ActiveSupport::TestCase
     assert_equal 23.hours + 32.minutes + 1.second, duration.length
 
   end
+
+  test 'clean should delete blocks older than 12 days' do
+    create_block_at(0.days.ago)
+    create_block_at(12.days.ago)
+
+    create_block_at(13.days.ago)
+    create_block_at(1.year.ago)
+
+    assert_difference('Block.count', -2) do
+      Block.clean
+    end
+    
+  end
+
+  def create_block_at(date)
+    start = date.beginning_of_day
+    finish = start + 10.minutes
+    Block.create(start: start, finish: finish)
+  end
      
 end

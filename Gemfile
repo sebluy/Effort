@@ -2,12 +2,18 @@ source 'https://rubygems.org'
 
 gem 'rails'
 
+group :development do
+  gem 'guard'
+  gem 'guard-minitest'
+end
+
 group :development, :test do
   gem 'sqlite3'
-  gem 'pry-rails'
-  gem 'pry'
-  gem 'pry-byebug'
-  gem 'pry-bloodline'
+  gem 'byebug'
+#  gem 'pry-rails'
+#  gem 'pry'
+#  gem 'pry-byebug'
+#  gem 'pry-bloodline'
   gem 'spring'
 end
 
@@ -15,7 +21,6 @@ group :test do
   gem 'simplecov', require: false
   gem 'mini_backtrace'
   gem 'minitest-reporters'
-  gem 'guard-minitest'
 end
 
 group :production do

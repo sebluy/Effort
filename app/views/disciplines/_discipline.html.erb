@@ -9,9 +9,6 @@
       %>
     </span>
   </td>
-  <td>
-    <%= discipline.old %>
-  </td>
   <% 6.downto(0) do |n| %>
     <td>
       <%= discipline.daily_time_spent(n.days.ago) %>

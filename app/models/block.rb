@@ -10,12 +10,17 @@ class Block < ActiveRecord::Base
     update(finish: Time.zone.now)
   end
 
-  def self.start_new
-    self.create(start: Time.zone.now)
+  def Block.start_new
+    Block.create(start: Time.zone.now)
   end
 
-  def self.pending
-    self.where(finish: nil)
+  def Block.pending
+    Block.where(finish: nil)
+  end
+
+  def Block.clean
+    start = Block.arel_table[:start]
+    Block.where(start.lt(12.days.ago.to_date)).delete_all   
   end
 
 end

@@ -1,6 +1,6 @@
 guard :minitest, spring: true, all_on_start: false do
 
-  watch(%r{^test/(.*)\/?test_(.*)\.rb$})
+  watch(%r{^test/(.*)\/?(.*)_test\.rb$})
 	watch('config/routes.rb') { integration_tests }
 	watch(%r{^app/models/(.*?)\.rb$}) do |matches|
     "test/models/#{matches[1]}_test.rb"

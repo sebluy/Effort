@@ -1,6 +1,7 @@
 class DisciplinesController < ApplicationController
-
+  
   def index
+    Block.clean
 
     @disciplines = Discipline.all
     @time_table = {}

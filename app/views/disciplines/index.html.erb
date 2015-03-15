@@ -4,17 +4,11 @@
   <%= link_to 'New Discipline', new_discipline_path %>
 </div>
 
-<div>
-  <p>Old: <%= Discipline.old %></p>
-  <%= link_to 'Clean', clean_path, method: :post %>
-</div>
-
 <table>
 
   <thead>
     <tr>
       <th>Discipline</th>
-      <th>Old</th>
       <% 6.downto(2) do |n| %>
         <th><%= n.days.ago.strftime('%A') %></th>
       <% end %>
@@ -30,9 +24,6 @@
     <tr>
       <td scope="row">
         All
-      </td>
-      <td>
-        <%= Discipline.old %>
       </td>
       <% -6.upto(0) do |n| %>
         <td>

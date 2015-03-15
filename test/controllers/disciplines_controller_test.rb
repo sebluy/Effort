@@ -1,6 +1,15 @@
 require 'test_helper'
 
 class DisciplinesControllerTest < ActionController::TestCase
+  
+  test 'should clean old blocks on index' do
+    start = 14.days.ago
+    finish = start + 10.minutes
+    Block.create(start: start, finish: finish)
+    assert_difference 'Block.count', -1 do
+      get :index
+    end
+  end
 
   test 'should show a discipline' do
     id = Discipline.create.id
