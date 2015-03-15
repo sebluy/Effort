@@ -2,6 +2,8 @@ class Block < ActiveRecord::Base
 
   belongs_to :discipline
 
+  MEMORY_LENGTH = 12.days
+
   def duration
     TimeDuration.new(start, finish)
   end
@@ -20,7 +22,7 @@ class Block < ActiveRecord::Base
 
   def Block.clean
     start = Block.arel_table[:start]
-    Block.where(start.lt(12.days.ago.to_date)).delete_all   
+    Block.where(start.lt(MEMORY_LENGTH.ago.to_date)).delete_all   
   end
 
 end

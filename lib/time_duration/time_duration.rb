@@ -32,6 +32,14 @@ module TimeDuration
     length <=> duration.length
   end
 
+  def ==(another)
+    if another.is_a? TimeDuration
+      length == another.length
+    else
+      length == another
+    end
+  end
+
   class Finished
     
     include TimeDuration

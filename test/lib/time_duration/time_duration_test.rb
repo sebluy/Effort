@@ -48,6 +48,19 @@ class TimeDurationTest < ActiveSupport::TestCase
 
   end
 
+  test 'should equal another time duration' do
+    
+    @other_object = Object.new
+    @other_object.extend(TimeDuration)
+    @other_object.define_singleton_method(:length) { 5 }
+    
+    assert_equal @object, @other_object
+  end
+
+  test 'should equal a number of seconds' do
+    assert_equal @object, 5.seconds
+  end
+
   test 'initializer should choose the correct class' do
     
     time = Time.now
