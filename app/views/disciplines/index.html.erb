@@ -19,15 +19,19 @@
 
   <tbody>
 
-    <%= render @disciplines %>
+    <% @disciplines.each do |discipline| %>
+      <%= render partial: 'discipline',
+              locals: { discipline: discipline,
+                        summary: @summary[discipline.title] } %>
+    <% end %>
 
     <tr>
       <td scope="row">
         All
       </td>
-      <% -6.upto(0) do |n| %>
+      <% 6.downto(0) do |n| %>
         <td>
-          <%= @time_table[n] %>
+          <%= @summary['total'][n] %>
         </td>
       <% end %>
     </tr>
@@ -36,7 +40,13 @@
 
 </table>
 
-<%= hidden_field_tag 'plot_data', @plot_data.to_json %>
+<% lengths = {} %>
+<% @summary.each_pair do |key, value| %>
+  <% lengths[key] = value.map(&:length) %>
+<% end %>
+<% json = lengths.to_json %>
+
+<%= hidden_field_tag 'plot_data', json %>
 
 <div class="plot" id="daily_plot"></div>
 <div class="plot" id="weekly_total_plot"></div>

@@ -20,10 +20,6 @@ module TimeDuration
     end
   end
 
-  def to_json
-    length
-  end
-
   def +(duration)
     Aggregate.new(self, duration)
   end
@@ -80,13 +76,28 @@ module TimeDuration
     
     include TimeDuration
 
+    attr_reader :unfinished
+
     def initialize(*durations)
-      @durations = *durations
+      @length = 0.0
+      @unfinished = []
+      durations.each do |duration|
+        if duration.instance_of? Aggregate
+          @unfinished += duration.unfinished
+          @length += duration.length
+        elsif duration.instance_of? Finished
+          @length += duration.length
+        elsif duration.instance_of? Unfinished
+          @unfinished << duration
+        end
+      end
     end
 
     def length
-      @durations.inject(0) { |sum, duration| sum + duration.length }
+      @length +
+          @unfinished.inject(0) { |sum, duration| sum + duration.length }
     end
+
 
   end
 

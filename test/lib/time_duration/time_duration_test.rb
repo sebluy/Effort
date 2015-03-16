@@ -3,9 +3,7 @@ require 'test_helper'
 class TimeDurationTest < ActiveSupport::TestCase
 
   setup do
-    @object = Object.new
-    @object.extend(TimeDuration)
-    @object.define_singleton_method(:length) { 5 }
+    @object = TimeDuration::Finished.new(5.0)
   end
 
   test 'should print out in the right format' do
@@ -25,10 +23,8 @@ class TimeDurationTest < ActiveSupport::TestCase
 
   test 'should add to another duration' do
 
-    @other_object = Object.new
-    @other_object.extend(TimeDuration)
-    @other_object.define_singleton_method(:length) { 10 }
-    assert_equal 15, (@other_object + @object).length
+    @other_object = TimeDuration::Finished.new(10)
+    assert_equal 15, (@object + @other_object).length
 
   end
 

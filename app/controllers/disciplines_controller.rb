@@ -2,17 +2,8 @@ class DisciplinesController < ApplicationController
   
   def index
     Block.clean
-
     @disciplines = Discipline.all
-    @time_table = {}
-    @plot_data = []
-  
-    0.upto(13) do |n|
-      time = Discipline.daily_time_spent(n.days.ago)
-      @time_table[-n] = time
-      @plot_data.unshift([-n, time.length/3600.0])
-    end
-
+    @summary = Discipline.summary
   end
 
   def clean

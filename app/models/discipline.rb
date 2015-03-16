@@ -24,7 +24,8 @@ class Discipline < ActiveRecord::Base
     summary = {}
     total = Array.new(Block::MEMORY_LENGTH/1.day + 1,
                         TimeDuration::Null.new)
-    Discipline.all.each do |discipline|
+
+    Discipline.find_each do |discipline|
       summary[discipline.title] = []
       0.upto(Block::MEMORY_LENGTH/1.day) do |n|
         time = discipline.daily_time_spent(n.days.ago)
@@ -32,6 +33,7 @@ class Discipline < ActiveRecord::Base
         total[n] += time
       end
     end
+
     summary['total'] = total
     summary
   end

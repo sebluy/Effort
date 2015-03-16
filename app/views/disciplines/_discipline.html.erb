@@ -5,13 +5,12 @@
     </span>
     <span>
       <%= link_to 'Start', start_discipline_block_path(discipline),
-        method: :post
-      %>
+              method: :post %>
     </span>
   </td>
   <% 6.downto(0) do |n| %>
     <td>
-      <%= discipline.daily_time_spent(n.days.ago) %>
+      <%= summary[n] %>
     </td>
   <% end %>
 </tr>
