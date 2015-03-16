@@ -42,7 +42,7 @@
 
 <% lengths = {} %>
 <% @summary.each_pair do |key, value| %>
-  <% lengths[key] = value.map(&:length) %>
+  <% lengths[key] = value.map { |duration| duration.length/3600 } %>
 <% end %>
 <% json = lengths.to_json %>
 
