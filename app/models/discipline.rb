@@ -34,7 +34,7 @@ class Discipline < ActiveRecord::Base
       end
     end
 
-    summary['total'] = total
+    summary['Total'] = total
     summary
   end
 
