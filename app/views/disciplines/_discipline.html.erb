@@ -1,12 +1,11 @@
 <tr>
-  <td scope="row">
-    <span>
-      <%= link_to discipline.title, discipline_path(discipline) %>
-    </span>
-    <span>
-      <%= link_to 'Start', start_discipline_block_path(discipline),
-              method: :post %>
-    </span>
+  <td>
+    <%= link_to discipline.title, discipline_path(discipline) %>
+            
+  </td>
+  <td>
+    <%= link_to 'Start', start_discipline_block_path(discipline),
+            method: :post, class: 'btn btn-sm btn-success' %>
   </td>
   <% 6.downto(0) do |n| %>
     <td>

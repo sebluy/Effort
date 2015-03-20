@@ -1,14 +1,17 @@
-<h1>Disciplines</h1>
-
-<div>
-  <%= link_to 'New Discipline', new_discipline_path %>
+<div class="page-header">
+  <h1>
+      Disciplines
+      <%= link_to 'New Discipline', new_discipline_path,
+              class: 'btn btn-large btn-primary pull-right' %>
+  </h1>
 </div>
 
-<table id="summary">
+<table class="table">
 
   <thead>
     <tr>
       <th>Discipline</th>
+      <th></th>
       <% 6.downto(2) do |n| %>
         <th><%= n.days.ago.strftime('%A') %></th>
       <% end %>
@@ -26,9 +29,10 @@
     <% end %>
 
     <tr>
-      <td scope="row">
+      <td>
         Total
       </td>
+      <td></td>
       <% 6.downto(0) do |n| %>
         <td>
           <%= @summary['Total'][n] %>
@@ -48,8 +52,12 @@
 
 <%= hidden_field_tag 'plot_data', json %>
 
-<p>Daily Time Spent</p>
-<div class="plot" id="daily_plot"></div>
+<div class="page-header">
+  <h1 class="center">Daily Time Spent</h1>
+</div>
+<div class="plot center" id="daily_plot"></div>
 
-<p>Weekly Time Spent</p>
-<div class="plot" id="weekly_total_plot"></div>
+<div class="page-header">
+  <h1 class="center">Weekly Time Spent</h1>
+</div>
+<div class="plot center" id="weekly_total_plot"></div>

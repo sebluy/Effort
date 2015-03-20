@@ -26,7 +26,7 @@ group :production do
   gem 'rails_12factor'
 end
 
-gem 'jasmine'
+gem 'bootstrap-sass'
 gem 'flot-rails', :git => "https://github.com/Kjarrigan/flot-rails.git"
 gem 'sass-rails'
 gem 'uglifier'
