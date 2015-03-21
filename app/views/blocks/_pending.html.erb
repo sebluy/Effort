@@ -1,15 +1,11 @@
 <% pending = Block.pending %>
 <% if !pending.empty? %>
-  <div id="pending">
-    <p>
-      <% Block.pending.each do |block| %>
-        <b><%= block.discipline.title %></b></br>
-        <span id="time"><%= block.duration %></span></br>
-        <%= link_to 'Finish',
-          finish_discipline_block_path(block.discipline_id, block.id),
-          method: :post
-        %>
-      <% end %>
-    </p>
-  </div>
+  <% Block.pending.each do |block| %>
+    <%= link_to \
+            finish_discipline_block_path(block.discipline_id, block.id),
+            method: :post, class: 'btn btn-danger navbar-btn' do %> 
+      Finish
+      <span id="time" class="badge"><%= block.duration %></span>
+    <% end %>
+  <% end %>
 <% end %>

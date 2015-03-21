@@ -3,10 +3,10 @@
 var timer ;
 var ready = function() {
   clearInterval(timer) ;
-  var server_time = $('#pending span#time').html() ;
+  var server_time = $('#time').html() ;
   if (server_time != undefined) {
     var time = new Date('T' + server_time + 'Z') ;
-    $('#pending span#time').html(display_string(time)) ;
+    $('#time').html(display_string(time)) ;
     $('head title').html(display_string(time)) ;
     timer = setInterval(function() {myTimer(time)}, 1000) ;
   }
@@ -18,7 +18,7 @@ var display_string = function(time) {
 
 var myTimer = function(time) {
   time.setSeconds(time.getSeconds() + 1) ;
-  $('#pending span#time').html(display_string(time)) ;
+  $('#time').html(display_string(time)) ;
   $('head title').html(display_string(time)) ;
 } ;
 
