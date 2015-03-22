@@ -17,7 +17,7 @@ class Block < ActiveRecord::Base
   end
 
   def Block.pending
-    Block.where(finish: nil)
+    Block.find_by(finish: nil)
   end
 
   def Block.clean

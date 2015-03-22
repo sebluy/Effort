@@ -1,11 +1,19 @@
 <tr>
   <td>
     <%= link_to discipline.title, discipline_path(discipline) %>
-            
   </td>
   <td>
-    <%= link_to 'Start', start_discipline_block_path(discipline),
-            method: :post, class: 'btn btn-sm btn-success' %>
+    <% pending = Block.pending %>
+    <% if !pending.nil? %>
+      <% if pending.discipline_id == discipline.id %>
+        <%= link_to 'Finish',
+                finish_discipline_block_path(pending.discipline, pending),
+                method: :post, class: 'btn btn-sm btn-danger' %>
+      <% end %>
+    <% else %>
+      <%= link_to 'Start', start_discipline_block_path(discipline),
+              method: :post, class: 'btn btn-sm btn-success' %>
+    <% end %>
   </td>
   <% 6.downto(0) do |n| %>
     <td>
