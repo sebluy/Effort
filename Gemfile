@@ -17,7 +17,6 @@ end
 
 group :test do
   gem 'simplecov', require: false
-  gem 'mini_backtrace'
   gem 'minitest-reporters'
 end
 

@@ -84,7 +84,7 @@ module TimeDuration
       durations.each do |duration|
         if duration.instance_of? Aggregate
           @unfinished += duration.unfinished
-          @length += duration.length
+          @length += duration.static_length
         elsif duration.instance_of? Finished
           @length += duration.length
         elsif duration.instance_of? Unfinished
@@ -98,6 +98,9 @@ module TimeDuration
           @unfinished.inject(0) { |sum, duration| sum + duration.length }
     end
 
+    def static_length
+      @length
+    end
 
   end
 

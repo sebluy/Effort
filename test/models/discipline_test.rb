@@ -13,6 +13,14 @@ class DisciplineTest < ActiveSupport::TestCase
     assert_equal block.discipline_id, discipline.id
   end
 
+  test 'daily_time_spend should be accurate for pending blocks' do
+    discipline = Discipline.create
+    now = Time.zone.now
+    discipline.blocks.create(start: now - 10.minutes)
+    duration = discipline.daily_time_spent(Date.today)
+    assert_in_delta 10.minutes, duration.length, 1.second
+  end
+
   test 'should provide a summary' do
     discipline_a = Discipline.create(title: 'a')
     discipline_b = Discipline.create(title: 'b')
@@ -29,8 +37,15 @@ class DisciplineTest < ActiveSupport::TestCase
 
     assert_equal expected_a, actual_summary['a']
     assert_equal expected_b, actual_summary['b']
-    assert_equal expected_total, actual_summary['total']
-    
+    assert_equal expected_total, actual_summary['Total']
+  end
+
+  test 'summary should be accurate for pending blocks' do
+    discipline = Discipline.create
+    now = Time.zone.now
+    discipline.blocks.create(start: now - 10.minutes)
+    summary = Discipline.summary
+    assert_in_delta 10.minutes, summary['Total'][0].length, 1.second
   end
 
   def block_at(date)
