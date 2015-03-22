@@ -1,18 +1,22 @@
-<tr>
+<% pending_block = Block.pending %>
+<% pending = !pending_block.nil? %>
+<% this_discipline = pending &&
+      pending_block.discipline_id == discipline.id %>
+<% if this_discipline %>
+  <tr class="active">
+<% else %>
+  <tr>
+<% end %>
   <td>
     <%= link_to discipline.title, discipline_path(discipline) %>
   </td>
   <td>
-    <% pending = Block.pending %>
-    <% if !pending.nil? %>
-      <% if pending.discipline_id == discipline.id %>
-        <%= link_to 'Finish',
-                finish_discipline_block_path(pending.discipline, pending),
-                method: :post, class: 'btn btn-sm btn-danger' %>
+    <% if pending %>
+      <% if this_discipline %>
+        <%= finish_button(pending_block) %>
       <% end %>
     <% else %>
-      <%= link_to 'Start', start_discipline_block_path(discipline),
-              method: :post, class: 'btn btn-sm btn-success' %>
+      <%= start_button(discipline) %>
     <% end %>
   </td>
   <% 6.downto(0) do |n| %>
