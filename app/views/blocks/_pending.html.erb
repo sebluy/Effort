@@ -1,8 +1,7 @@
-<% block = Block.pending %>
-<% if !block.nil? %>
-  <%= link_to finish_discipline_block_path(block.discipline, block),
+<% if pending? %>
+  <%= link_to finish_discipline_block_path(pending.discipline, pending),
       method: :post, class: 'btn btn-danger navbar-btn' do %> 
     Finish
-    <span id="time" class="badge"><%= block.duration %></span>
+    <span id="time" class="badge"><%= pending.duration %></span>
   <% end %>
 <% end %>

@@ -24,7 +24,7 @@
 
     <% @disciplines.each do |discipline| %>
       <%= render partial: 'discipline',
-              locals: { discipline: discipline,
+             locals: { discipline: discipline,
                         summary: @summary[discipline.title] } %>
     <% end %>
 

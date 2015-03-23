@@ -1,8 +1,4 @@
-<% pending_block = Block.pending %>
-<% pending = !pending_block.nil? %>
-<% this_discipline = pending &&
-      pending_block.discipline_id == discipline.id %>
-<% if this_discipline %>
+<% if pending_discipline?(discipline) %>
   <tr class="active">
 <% else %>
   <tr>
@@ -11,11 +7,9 @@
     <%= link_to discipline.title, discipline_path(discipline) %>
   </td>
   <td>
-    <% if pending %>
-      <% if this_discipline %>
-        <%= finish_button(pending_block) %>
-      <% end %>
-    <% else %>
+    <% if pending_discipline?(discipline) %>
+      <%= finish_button(pending) %>
+    <% elsif !pending? %>
       <%= start_button(discipline) %>
     <% end %>
   </td>
