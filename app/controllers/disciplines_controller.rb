@@ -13,6 +13,7 @@ class DisciplinesController < ApplicationController
 
   def show
     @discipline = Discipline.find(params[:id])
+    @blocks = @discipline.blocks.order(start: :desc)
   end
     
   def destroy
@@ -22,11 +23,11 @@ class DisciplinesController < ApplicationController
   end
 
   def new
+    @discipline = Discipline.new
   end
 
   def create
-    @discipline = Discipline.new(discipline_params)
-    @discipline.save
+    @discipline = Discipline.create(discipline_params)
     redirect_to disciplines_path
   end
 

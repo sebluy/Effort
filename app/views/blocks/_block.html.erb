@@ -15,13 +15,13 @@
     <%= block.start.to_s(:time) %>
   </p>
 
-  <%= link_to 'Destroy', discipline_block_path(discipline, block),
+  <%= link_to 'Destroy', discipline_block_path(@discipline, block),
     method: :delete %>
 
-  <%= link_to 'Edit', edit_discipline_block_path(discipline, block) %>
+  <%= link_to 'Edit', edit_discipline_block_path(@discipline, block) %>
 
   <% if block.finish.nil? %>
-    <%= link_to 'Finish', finish_discipline_block_path(discipline, block),
+    <%= link_to 'Finish', finish_discipline_block_path(@discipline, block),
       method: :post %>
   <% end %>
 
