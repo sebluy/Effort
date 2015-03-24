@@ -1,6 +1,6 @@
 <h1>Edit Block</h1>
 
-<h2> <%= Discipline.find(@block.discipline_id).title %> </h2>
+<h2> <%= @block.discipline.title %> </h2>
 
 <%= form_for :block,
   url: discipline_block_path(@block.discipline_id, @block.id),

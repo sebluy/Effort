@@ -1,63 +1,18 @@
 <div class="page-header">
   <h1>
-      Disciplines
-      <%= link_to 'New Discipline', new_discipline_path,
-              class: 'btn btn-large btn-primary pull-right' %>
+    Disciplines
+    <%= link_to 'New Discipline', new_discipline_path,
+            class: 'btn btn-large btn-primary pull-right' %>
   </h1>
 </div>
 
 <table class="table">
-
-  <thead>
-    <tr>
-      <th>Discipline</th>
-      <th></th>
-      <% 6.downto(2) do |n| %>
-        <th><%= n.days.ago.strftime('%A') %></th>
-      <% end %>
-      <th>Yesterday</th>
-      <th>Today</th>
-    </tr>
-  </thead>
-
+  <%= render 'table_header' %>
   <tbody>
-
-    <% @disciplines.each do |discipline| %>
-      <%= render partial: 'discipline',
-             locals: { discipline: discipline,
-                        summary: @summary[discipline.title] } %>
-    <% end %>
-
-    <tr>
-      <td>
-        Total
-      </td>
-      <td></td>
-      <% 6.downto(0) do |n| %>
-        <td>
-          <%= @summary['Total'][n] %>
-        </td>
-      <% end %>
-    </tr>
-
+    <%= render @disciplines %>
   </tbody>
-
+  <%= render 'table_footer' %>
 </table>
 
-<% lengths = {} %>
-<% @summary.each_pair do |key, value| %>
-  <% lengths[key] = value.map { |duration| duration.length/3600 } %>
-<% end %>
-<% json = lengths.to_json %>
-
-<%= hidden_field_tag 'plot_data', json %>
-
-<div class="page-header">
-  <h1 class="center">Daily Time Spent</h1>
-</div>
-<div class="plot center" id="daily_plot"></div>
-
-<div class="page-header">
-  <h1 class="center">Weekly Time Spent</h1>
-</div>
-<div class="plot center" id="weekly_total_plot"></div>
+<%= hidden_field_tag 'plot_data', summary_to_json %>
+<%= render 'plots' %>

@@ -1,0 +1,12 @@
+<thead>
+  <tr>
+    <th>Discipline</th>
+    <th></th>
+    <% 6.downto(2) do |n| %>
+      <th><%= n.days.ago.strftime('%A') %></th>
+    <% end %>
+    <th>Yesterday</th>
+    <th>Today</th>
+  </tr>
+</thead>
+

@@ -1,0 +1,11 @@
+<tfoot>
+  <td>
+    Total
+  </td>
+  <td></td>
+  <% 6.downto(0) do |n| %>
+    <td>
+      <%= @summary['Total'][n] %>
+    </td>
+  <% end %>
+</tfoot>
