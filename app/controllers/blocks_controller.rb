@@ -13,17 +13,16 @@ class BlocksController < ApplicationController
 
   def edit
     @block = Block.find(params[:id])
+    @discipline = @block.discipline
   end
 
   def update
-    @block = Block.find(params[:id])
-    @block.update(block_params)
+    Block.find(params[:id]).update(block_params)
     redirect_to discipline_path(params[:discipline_id]) 
   end
   
   def destroy
-    @block = Block.find(params[:id])
-    @block.destroy
+    Block.find(params[:id]).destroy
     redirect_to discipline_path(params[:discipline_id])
   end
 
