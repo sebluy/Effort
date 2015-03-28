@@ -19,7 +19,7 @@ class Summary
   end
 
   private
-  
+
   def create
     @summary = {}
     allocate
@@ -29,12 +29,14 @@ class Summary
   end
 
   def allocate
-    @summary['Total'] = Array.new(Block::MEMORY_LENGTH/1.day + 1,
-                                    TimeDuration::Null.new)
+    @summary['Total'] = new_null_duration_array
     @disciplines.each do |discipline|
-      @summary[discipline.id] = Array.new(Block::MEMORY_LENGTH/1.day + 1,
-          TimeDuration::Null.new)
+      @summary[discipline.id] = new_null_duration_array
     end
+  end
+
+  def new_null_duration_array
+    Array.new(Block::MEMORY_LENGTH, TimeDuration::Null.new)
   end
 
   def aggregate
