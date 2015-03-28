@@ -1,5 +1,8 @@
 guard :minitest, spring: true, all_on_start: false do
 
+  watch(%r{^lib\/(.+).rb$}) do |matches|
+		"test/lib/#{matches[1]}_test.rb"
+	end
   watch(%r{^test/(.*)\/?(.*)_test\.rb$})
 	watch('config/routes.rb') { integration_tests }
 	watch(%r{^app/models/(.*?)\.rb$}) do |matches|

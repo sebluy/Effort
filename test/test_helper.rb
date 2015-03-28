@@ -12,4 +12,10 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def block_at(date)
+    start = date.beginning_of_day
+    finish = start + 10.minutes
+    Block.new(start: start, finish: finish)
+  end
+ 
 end

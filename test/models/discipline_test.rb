@@ -48,10 +48,4 @@ class DisciplineTest < ActiveSupport::TestCase
     assert_in_delta 10.minutes, summary['Total'][0].length, 1.second
   end
 
-  def block_at(date)
-    start = date.beginning_of_day
-    finish = start + 10.minutes
-    Block.new(start: start, finish: finish)
-  end
-
 end

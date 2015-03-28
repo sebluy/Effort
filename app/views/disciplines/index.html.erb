@@ -14,5 +14,5 @@
   <%= render 'table_footer' %>
 </table>
 
-<%= hidden_field_tag 'plot_data', summary_to_json %>
+<%= hidden_field_tag 'plot_data', @summary.to_json %>
 <%= render 'plots' %>

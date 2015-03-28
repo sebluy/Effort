@@ -21,44 +21,7 @@ class Discipline < ActiveRecord::Base
   end
 
   def self.summary
-    summary = {}
-    total = Array.new(Block::MEMORY_LENGTH/1.day + 1,
-                        TimeDuration::Null.new)
-
-    Discipline.find_each do |discipline|
-      summary[discipline.title] = []
-      0.upto(Block::MEMORY_LENGTH/1.day) do |n|
-        time = discipline.daily_time_spent(n.days.ago)
-        summary[discipline.title] << time
-        total[n] += time
-      end
-    end
-
-    summary['Total'] = total
-    summary
-  end
-
-  def self.alternate_summary
-    summary = {}
-
-    blocks = Block.all
-    disciplines = Discipline.all
-
-    total = Array.new(Block::MEMORY_LENGTH/1.day + 1,
-                        TimeDuration::Null.new)
-
-    disciplines.each do |discipline|
-      summary[discipline.id] = Array.new(Block::MEMORY_LENGTH/1.day + 1,
-          TimeDuration::Null.new)
-    end
-
-    blocks.each do |block|
-      days_ago = Date.today - block.start.to_date
-      summary[block.discipline_id][days_ago] += block.duration
-      summary['Total'][days_ago] += block.duration
-    end
-    
-    summary
+    Summary.new(Block.all, Discipline.all)
   end
 
 end
