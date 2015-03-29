@@ -41,7 +41,7 @@ class Summary
 
   def aggregate
     @blocks.each do |block|
-      days_ago = Date.today - block.start.to_date
+      days_ago = Time.zone.now.to_date - block.start.to_date
       @summary[block.discipline_id][days_ago] += block.duration
       @summary['Total'][days_ago] += block.duration
     end
