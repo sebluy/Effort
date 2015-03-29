@@ -22,8 +22,8 @@ class Block < ActiveRecord::Base
 
   def Block.clean
     start = Block.arel_table[:start]
-    expiration_date = (MEMORY_LENGTH - 1).days.ago.to_date
-    Block.where(start.lt(expiration_date)).delete_all   
+    expiration_time = (MEMORY_LENGTH - 1).days.ago.at_beginning_of_day
+    Block.where(start.lt(expiration_time)).delete_all   
   end
 
 end
