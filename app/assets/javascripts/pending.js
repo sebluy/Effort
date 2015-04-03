@@ -5,7 +5,12 @@ var ready = function() {
   clearInterval(timer) ;
   var server_time = $('#time').html() ;
   if (server_time != undefined) {
-    var time = new Date('T' + server_time + 'Z') ;
+    var server_times = server_time.split(':').map(function(str) {
+                                return parseInt(str) ; }) ;
+    var time = new Date() ;
+    time.setSeconds(server_times[2]) ;
+    time.setMinutes(server_times[1]) ;
+    time.setHours(server_times[0]) ;
     $('#time').html(display_string(time)) ;
     $('head title').html(display_string(time)) ;
     timer = setInterval(function() {myTimer(time)}, 1000) ;
@@ -13,7 +18,7 @@ var ready = function() {
 } ;
 
 var display_string = function(time) {
-  return time.toUTCString().substring(17, 25) ;
+  return time.toString().substring(16, 24) ;
 }
 
 var myTimer = function(time) {
